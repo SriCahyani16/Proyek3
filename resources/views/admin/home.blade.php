@@ -2,132 +2,73 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-
-    <meta name="copyright" content="MACode ID, https://macodeid.com/">
-
-    <title>One Health - Medical Center HTML5 Template</title>
-
-    <link rel="stylesheet" href="../assets/css/maicons.css">
-
-    <link rel="stylesheet" href="../assets/css/bootstrap.css">
-
-    <link rel="stylesheet" href="../assets/vendor/owl-carousel/css/owl.carousel.css">
-
-    <link rel="stylesheet" href="../assets/vendor/animate/animate.css">
-
-    <link rel="stylesheet" href="../assets/css/theme.css">
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Corona Admin</title>
+    <!-- plugins:css -->
+    <link rel="stylesheet" href="admin/assets/vendors/mdi/css/materialdesignicons.min.css">
+    <link rel="stylesheet" href="admin/assets/vendors/css/vendor.bundle.base.css">
+    <!-- endinject -->
+    <!-- Plugin css for this page -->
+    <link rel="stylesheet" href="admin/assets/vendors/jvectormap/jquery-jvectormap.css">
+    <link rel="stylesheet" href="admin/assets/vendors/flag-icon-css/css/flag-icon.min.css">
+    <link rel="stylesheet" href="admin/assets/vendors/owl-carousel-2/owl.carousel.min.css">
+    <link rel="stylesheet" href="admin/assets/vendors/owl-carousel-2/owl.theme.default.min.css">
+    <!-- End plugin css for this page -->
+    <!-- inject:css -->
+    <!-- endinject -->
+    <!-- Layout styles -->
+    <link rel="stylesheet" href="admin/assets/css/style.css">
+    <!-- End layout styles -->
+    <link rel="shortcut icon" href="admin/assets/images/favicon.png" />
 </head>
 
 <body>
+    <div class="container-scroller">
+        {{-- Sidebar Section --}}
+        @include('admin.sidebar')
+        {{-- End Sidebar Section --}}
 
-    <!-- Back to top button -->
-    <div class="back-to-top"></div>
+        <!-- partial -->
+        <div class="container-fluid page-body-wrapper">
+            {{-- Navbar Section --}}
+            @include('admin.navbar')
+            {{-- End Navbar Section --}}
+            <!-- partial -->
+            <div class="main-panel">
+                {{-- Body or Main Panel Section --}}
+                @include('admin.body')
+                {{-- End BOdy or Main Panel Section --}}
+                {{-- Footer Section --}}
+                @include('admin.footer')
+                {{-- End Footer Section --}}
+            </div>
+        </div>
+        <!-- page-body-wrapper ends -->
+    </div>
 
-    <header>
-        <div class="topbar">
-            <div class="container">
-                <div class="row">
-                    <div class="col-sm-8 text-sm">
-                        <div class="site-info">
-                            <a href="#"><span class="mai-call text-primary"></span> +00 123 4455 6666</a>
-                            <span class="divider">|</span>
-                            <a href="#"><span class="mai-mail text-primary"></span> mail@example.com</a>
-                        </div>
-                    </div>
-                    <div class="col-sm-4 text-right text-sm">
-                        <div class="social-mini-button">
-                            <a href="#"><span class="mai-logo-facebook-f"></span></a>
-                            <a href="#"><span class="mai-logo-twitter"></span></a>
-                            <a href="#"><span class="mai-logo-dribbble"></span></a>
-                            <a href="#"><span class="mai-logo-instagram"></span></a>
-                        </div>
-                    </div>
-                </div> <!-- .row -->
-            </div> <!-- .container -->
-        </div> <!-- .topbar -->
-
-        <nav class="navbar navbar-expand-lg navbar-light shadow-sm">
-            <div class="container">
-                <a class="navbar-brand" href="#"><span class="text-primary">One</span>-Health</a>
-
-                <form action="#">
-                    <div class="input-group input-navbar">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text" id="icon-addon1"><span class="mai-search"></span></span>
-                        </div>
-                        <input type="text" class="form-control" placeholder="Enter keyword.." aria-label="Username"
-                            aria-describedby="icon-addon1">
-                    </div>
-                </form>
-
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupport"
-                    aria-controls="navbarSupport" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-
-                <div class="collapse navbar-collapse" id="navbarSupport">
-                    <ul class="navbar-nav ml-auto">
-                        <li class="nav-item active">
-                            <a class="nav-link" href="index.html">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="about.html">About Us</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="doctors.html">Doctors</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="blog.html">News</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="contact.html">Contact</a>
-                        </li>
-                        @if (Route::has('login'))
-                            @auth
-                            <div class="dropdown">
-                                <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    {{ Auth::user()->name }}
-                                </button>
-                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                    <div class="block px-4 py-2 text-xs text-gray-400">
-                                        {{ __('Manage Account') }}
-                                    </div>
-                                    <a class="dropdown-item" href="{{ route('profile.show') }}">Profile</a>
-                                    <form method="POST" action="{{ route('logout') }}">
-                                        @csrf
-                                        <a class="dropdown-item" href="{{ route('logout') }}"  onclick="event.preventDefault(); this.closest('form').submit();"> {{ __('Log Out') }}</a>
-                                    </form>
-                                </div>
-                            </div>
-                            @else
-                                <li class="nav-item">
-                                    <a class="btn btn-primary ml-lg-3" href="{{ route('login') }}">Login</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="btn btn-primary ml-lg-3" href="{{ route('register') }}">Register</a>
-                                </li>
-                            @endauth
-                        @endif
-                    </ul>
-                </div> <!-- .navbar-collapse -->
-            </div> <!-- .container -->
-        </nav>
-    </header>
-
-    <script src="../assets/js/jquery-3.5.1.min.js"></script>
-
-    <script src="../assets/js/bootstrap.bundle.min.js"></script>
-
-    <script src="../assets/vendor/owl-carousel/js/owl.carousel.min.js"></script>
-
-    <script src="../assets/vendor/wow/wow.min.js"></script>
-
-    <script src="../assets/js/theme.js"></script>
-
+    <!-- container-scroller -->
+    <!-- plugins:js -->
+    <script src="admin/assets/vendors/js/vendor.bundle.base.js"></script>
+    <!-- endinject -->
+    <!-- Plugin js for this page -->
+    <script src="admin/assets/vendors/chart.js/Chart.min.js"></script>
+    <script src="admin/assets/vendors/progressbar.js/progressbar.min.js"></script>
+    <script src="admin/assets/vendors/jvectormap/jquery-jvectormap.min.js"></script>
+    <script src="admin/assets/vendors/jvectormap/jquery-jvectormap-world-mill-en.js"></script>
+    <script src="admin/assets/vendors/owl-carousel-2/owl.carousel.min.js"></script>
+    <!-- End plugin js for this page -->
+    <!-- inject:js -->
+    <script src="admin/assets/js/off-canvas.js"></script>
+    <script src="admin/assets/js/hoverable-collapse.js"></script>
+    <script src="admin/assets/js/misc.js"></script>
+    <script src="admin/assets/js/settings.js"></script>
+    <script src="admin/assets/js/todolist.js"></script>
+    <!-- endinject -->
+    <!-- Custom js for this page -->
+    <script src="admin/assets/js/dashboard.js"></script>
+    <!-- End custom js for this page -->
 </body>
 
 </html>
