@@ -88,9 +88,21 @@
                         </li>
                         @if (Route::has('login'))
                             @auth
-                               <x-app-layout>
-
-                               </x-app-layout>
+                            <div class="dropdown">
+                                <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    {{ Auth::user()->name }}
+                                </button>
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                    <div class="block px-4 py-2 text-xs text-gray-400">
+                                        {{ __('Manage Account') }}
+                                    </div>
+                                    <a class="dropdown-item" href="{{ route('profile.show') }}">Profile</a>
+                                    <form method="POST" action="{{ route('logout') }}">
+                                        @csrf
+                                        <a class="dropdown-item" href="{{ route('logout') }}"  onclick="event.preventDefault(); this.closest('form').submit();"> {{ __('Log Out') }}</a>
+                                    </form>
+                                </div>
+                            </div>
                             @else
                                 <li class="nav-item">
                                     <a class="btn btn-primary ml-lg-3" href="{{ route('login') }}">Login</a>
