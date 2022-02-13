@@ -42,11 +42,17 @@
                                             <label for="doctor_name">Doctor name</label>
                                             <input type="text" class="form-control text-white" id="doctor_name"
                                                 placeholder="Full name" name="name" autocomplete="off">
+                                            @error('name')
+                                                <small class="text-danger"> {{ $message }} </small>
+                                            @enderror
                                         </div>
                                         <div class="form-group">
                                             <label for="phone_number">Phone</label>
                                             <input type="text" class="form-control text-white" id="phone_number"
                                                 placeholder="Phone number" name="phone_number" autocomplete="off">
+                                            @error('phone_number')
+                                                <small class="text-danger"> {{ $message }} </small>
+                                            @enderror
                                         </div>
                                         <div class="form-group">
                                             <label for="speciality">Speciality</label>
@@ -57,11 +63,17 @@
                                                 <option value="eye">Eye</option>
                                                 <option value="nose">Nose</option>
                                             </select>
+                                            @error('speciality')
+                                                <small class="text-danger"> {{ $message }} </small>
+                                            @enderror
                                         </div>
                                         <div class="form-group">
                                             <label for="room_number">Doctor room</label>
                                             <input type="number" class="form-control text-white" id="room_number"
                                                 placeholder="Room number" name="room_number" autocomplete="off">
+                                            @error('room_number')
+                                                <small class="text-danger">{{ $message }}</small>
+                                            @enderror
                                         </div>
                                         <div class="form-group">
                                             <label for="doctor_image">Doctor Image</label>
@@ -75,14 +87,11 @@
                                                         type="button">Upload</button>
                                                 </span>
                                             </div>
-                                        </div>
-                                        <div class="form-check form-check-flat form-check-primary">
-                                            <label class="form-check-label">
-                                                <input type="checkbox" class="form-check-input"> Remember me
-                                            </label>
+                                            @error('doctor_image')
+                                                <small class="text-danger">{{ $message }}</small>
+                                            @enderror
                                         </div>
                                         <button type="submit" class="btn btn-primary mr-2">Submit</button>
-                                        <button class="btn btn-dark">Cancel</button>
                                     </form>
                                 </div>
                             </div>
